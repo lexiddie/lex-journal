@@ -14,3 +14,5 @@ export const selectAllCategories = createSelector([selectMain], (main) => (main.
 export const selectEditCategories = createSelector([selectMain], (main) => (main.categories ? manipulateEdition(main.categories) : []));
 
 export const selectIndex = createSelector([selectMain], (main) => (main.categories ? findCategoryIndex(main.categories, main.categoryId) : 0));
+
+export const selectTotal = createSelector([selectManipulateJournals], (journals) => journals.reduce((total, current) => parseFloat(total) + parseFloat(current.amount), 0));

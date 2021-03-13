@@ -22,7 +22,7 @@ import DeleteModal from '../../components/journal-modal/delete-journal.modal';
 import { firestore } from '../../firebase/firebase.utils';
 
 import { selectCurrentUser, selectIsSignIn } from '../../redux/user/user.selectors';
-import { selectManipulateJournals, selectAllCategories, selectIndex } from '../../redux/main/main.selectors';
+import { selectManipulateJournals, selectAllCategories, selectIndex, selectTotal } from '../../redux/main/main.selectors';
 import { setJournals, setCategory } from '../../redux/main/main.actions';
 
 import EditLogo from '../../assets/edit.png';
@@ -59,7 +59,7 @@ const useStyles = makeStyles({
 });
 
 const Main = (props) => {
-  const { isSignIn, currentUser, history, categories, journals, setJournals, setCategory, currentIndex } = props;
+  const { isSignIn, currentUser, history, categories, journals, setJournals, setCategory, currentIndex, total } = props;
   const classes = useStyles();
   const [selectRecord, setSelectRecord] = useState({});
   const [isEditing, setIsEditing] = useState(false);
@@ -187,6 +187,10 @@ const Main = (props) => {
           <div className='next-line'>{currentUser != null ? <span className='display-user'>Welcome back {currentUser.displayName}</span> : null}</div>
 
           <div className='next-line'>
+            <NumberFormat className='price' value={total} displayType={'text'} thousandSeparator={true} prefix={'Your total spends ฿'} />
+          </div>
+
+          <div className='next-line'>
             <div className='w-10x'>
               <label>Category: </label>
             </div>
@@ -266,6 +270,7 @@ const mapStateToProps = createStructuredSelector({
   journals: selectManipulateJournals,
   categories: selectAllCategories,
   currentIndex: selectIndex,
+  total: selectTotal,
   isSignIn: selectIsSignIn
 });
 
