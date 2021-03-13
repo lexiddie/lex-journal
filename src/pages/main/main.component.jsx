@@ -187,7 +187,7 @@ const Main = (props) => {
           <div className='next-line'>{currentUser != null ? <span className='display-user'>Welcome back {currentUser.displayName}</span> : null}</div>
 
           <div className='next-line'>
-            <NumberFormat className='price' value={total} displayType={'text'} thousandSeparator={true} prefix={'Your total spends ฿'} />
+            <NumberFormat className='price display-span' value={total} displayType={'text'} thousandSeparator={true} prefix={'Your total spends ฿'} />
           </div>
 
           <div className='next-line'>
