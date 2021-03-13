@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -21,6 +21,16 @@ const Header = (props) => {
     auth.signOut();
     history.push('/home');
   };
+
+  const checkSignIn = () => {
+    if (!isSignIn) {
+      history.push('/home');
+    }
+  };
+
+  useEffect(() => {
+    checkSignIn();
+  }, [isSignIn]);
 
   return (
     <>
